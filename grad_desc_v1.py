@@ -43,4 +43,3 @@ def grad_desc(x : float, func : str, step : int = 0.05, lr : float = 3e-4, thres
     return x
     
     
-print(grad_desc(2, "x^2", step = 0.001, threshold=0.0001))
