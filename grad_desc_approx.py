@@ -20,7 +20,12 @@ def cleanfunc(func : str):
     inds = []
     func = list(func)
     for i, j in enumerate(func):
-        if j == "x" and func[i-1] != "(":
+        if all([
+            j == "x",
+            func[i-1] != "(",
+            func[i-1].isdigit(),
+            i != 0,
+        ]):
             inds.append(i)
     
     prev = 0
@@ -32,7 +37,7 @@ def cleanfunc(func : str):
     f = sympy.sympify(result)
     return sympy.lambdify(x, f)        
 
-@cache
+
 def grad_desc(x : float, func : str, step : int = 0.05, lr : float = 3e-4, threshold : float = 0.001):
     """
     Trains x by approximating the gradient and checks it against the threshold
@@ -40,6 +45,7 @@ def grad_desc(x : float, func : str, step : int = 0.05, lr : float = 3e-4, thres
     f = cleanfunc(func)
     while findgrad(x, f, step) > threshold:
         x -= findgrad(x, f, step)*lr
+        
     return x
     
     
