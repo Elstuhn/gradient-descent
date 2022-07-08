@@ -1,6 +1,8 @@
 import numpy as np
+import typing as t
 from typing import Callable
 
+tensor = t.Union(np.ndarray, list)
 
-def weightdescent(costfunc : Callable, ):
+def weightdescent(costeqn : str, weights : tensor):
     

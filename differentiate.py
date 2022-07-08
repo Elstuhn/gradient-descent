@@ -50,3 +50,4 @@ def differentiate(equation : str):
 # [8, ^5+4, ^4+2, ^3+8, ^2+2, +1]
 # 7x^3 + 8x^2
 # [7, ^3+8, ^2]
+print(differentiate("x^2"))

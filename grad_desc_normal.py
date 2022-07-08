@@ -1,5 +1,6 @@
 import sympy
 from differentiate import differentiate
+import decimal
 
 def cleanfunc(func : str):
     """
@@ -40,7 +41,6 @@ def prepfunc(func : str):
     """
     cleans the function for differentiating
     """
-    print(func)
     try:
         sympy.sympify(func)
         return func
@@ -70,7 +70,7 @@ def prepfunc(func : str):
     result += "".join(func[prev:])
     return result 
 
-def grad_desc(x : float, func : str, step : int = 0.05, lr : float = 3e-4, threshold : float = 0.001):
+def grad_desc(x : float, func : str, lr : float = 3e-4, threshold : float = 1e-5):
     """
     Trains x by approximating the gradient and checks it against the threshold
     """
@@ -85,3 +85,4 @@ def grad_desc(x : float, func : str, step : int = 0.05, lr : float = 3e-4, thres
         
     return x
     
+print(grad_desc(3, "x^2+3x+2"))
